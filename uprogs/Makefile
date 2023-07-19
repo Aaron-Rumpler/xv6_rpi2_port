@@ -3,6 +3,12 @@
 # Using native tools (e.g., on X86 Linux)
 #TOOLPREFIX = ~/gcc-arm-none-eabi-5_4-2016q3/bin/arm-none-eabi-
 
+UNAME := $(shell uname -m)
+
+ifneq ($(UNAME), armv7l)
+	# Use natively installed arm-none-eabi toolchain
+	TOOLPREFIX?=arm-none-eabi-
+endif
 
 # The intermediate directory for compiled object files.
 BUILD = build/

@@ -1,12 +1,12 @@
 UNAME := $(shell uname -m)
 
-ifeq ($(UNAME), x86_64)
-	# set FVP as default on x86_64 systems	
+ifeq ($(UNAME), armv7l)
+	# 'uname -m' reports armv7l on 32-bit Raspberry Pi OS
 	hw?=rpi2
-	TOOLCHAIN?=~/gcc-arm-none-eabi-5_4-2016q3/bin/arm-none-eabi-
 else
-	# RPI reports 'uname -m' as: armv7l
 	hw?=rpi2
+	# Use natively installed arm-none-eabi toolchain
+    TOOLCHAIN?=arm-none-eabi-
 endif
 
 # PHYSTART  : start of memory (RAM)
